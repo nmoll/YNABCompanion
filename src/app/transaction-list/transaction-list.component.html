@@ -1,0 +1,18 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" text="Transactions"></Label>
+</ActionBar>
+
+
+<GridLayout class="page page-content" *ngIf="(items | async).length">
+    <ListView [items]="items | async" class="list-group">
+        <ng-template let-item="item">
+            <Label [nsRouterLink]="['../item', item.id]" [text]="item.payee_name" class="list-group-item"></Label>
+        </ng-template>
+    </ListView>
+</GridLayout>
+
+<GridLayout class="page page-content" *ngIf="!(items | async).length">
+    <Label class="page-icon fa" text="&#xf1ea;"></Label>
+    <Label class="page-placeholder" text="No unapproved transactions"></Label>
+</GridLayout>
+
